@@ -12,7 +12,7 @@ INSTALLED_APPS = [
     'channels',
     'chat',
     # 'django.contrib.admin',
-    # 'django.contrib.auth',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -27,7 +27,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -53,6 +53,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mychat.wsgi.application'
 
 ASGI_APPLICATION = 'mychat.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default' : {
+        'BACKEND' : 'channels_redis.core.RedisChannelLayer',
+        'CONFIG' : {
+            "hosts" : [('127.0.0.1', 6379)]
+        }
+    } 
+} 
 
 SECRET_KEY = SECRET_KEY
 
